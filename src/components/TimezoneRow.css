@@ -12,7 +12,7 @@
 .timezone-header {
   position: sticky;
   left: 0;
-  z-index: 10;
+  z-index: 20; /* Stay above time slots */
   background: var(--color-bg-card);
   border-right: 2px solid var(--color-border);
   padding: var(--spacing-md);
@@ -22,8 +22,8 @@
   flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
-  gap: var(--spacing-xs);
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  gap: var(--spacing-sm);
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .timezone-row:hover .timezone-header {
@@ -34,22 +34,22 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
+  overflow: hidden;
 }
 
 .timezone-name {
   font-weight: 600;
   color: var(--color-text-primary);
   font-size: 0.95rem;
+  word-break: break-all;
 }
 
 .timezone-remove-btn {
-  position: absolute;
-  top: var(--spacing-xs);
-  right: var(--spacing-xs);
-  background: transparent;
-  border: none;
-  color: var(--color-text-muted);
-  font-size: 1.25rem;
+  align-self: flex-start;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--color-accent-danger);
+  font-size: 1rem;
   padding: 0;
   width: 24px;
   height: 24px;
@@ -57,15 +57,16 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   transition: all 0.2s ease;
   box-shadow: none;
+  margin-top: var(--spacing-xs);
 }
 
 .timezone-remove-btn:hover {
   background: var(--color-accent-danger);
   color: white;
-  transform: none;
+  transform: scale(1.1);
 }
 
 .timezone-slots {
@@ -90,15 +91,15 @@
 .time-slot.current-hour {
   position: sticky;
   left: 200px; /* Position after the timezone header */
-  z-index: 5;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+  z-index: 10;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
   border-left: 2px solid var(--color-accent-primary);
   border-right: 2px solid var(--color-accent-primary);
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2), -2px 0 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3), -2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .timezone-row:hover .time-slot.current-hour {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
 }
 
 .time-slot:hover {
@@ -131,48 +132,53 @@
 
 @media (max-width: 768px) {
   .timezone-row {
-    min-height: 70px;
+    min-height: 80px;
   }
   
   .timezone-header {
-    min-width: 100px;
-    max-width: 100px;
-    padding: var(--spacing-sm) var(--spacing-xs);
+    min-width: 110px;
+    max-width: 110px;
+    padding: var(--spacing-sm);
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+    z-index: 30; /* Ensure it stays above everything on mobile */
   }
   
   .time-slot {
-    min-width: 65px;
-    max-width: 65px;
-    padding: var(--spacing-xs) 4px;
+    min-width: 70px;
+    max-width: 70px;
+    padding: var(--spacing-sm) 4px;
   }
   
-  /* Disable sticky positioning for current hour on mobile */
+  /* Disable sticky positioning for current hour on mobile to reduce clutter */
   .time-slot.current-hour {
     position: relative;
     left: auto;
     z-index: 1;
+    box-shadow: none;
+    border-left: 1px solid var(--color-accent-primary);
+    border-right: 1px solid var(--color-accent-primary);
   }
   
   .timezone-name {
     font-size: 0.75rem;
     line-height: 1.2;
+    overflow-wrap: break-word;
   }
   
   .time-value {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     margin-top: 10px;
   }
   
   .date-label {
-    font-size: 0.6rem;
-    top: 2px;
+    font-size: 0.65rem;
+    top: 4px;
   }
   
   .timezone-remove-btn {
-    width: 18px;
-    height: 18px;
-    font-size: 0.9rem;
-    top: 2px;
-    right: 2px;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    margin-top: 4px;
   }
 }

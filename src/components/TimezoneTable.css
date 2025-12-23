@@ -44,17 +44,24 @@
 
 @media (max-width: 768px) {
   .timezone-table {
-    border-radius: var(--radius-md);
+    border-radius: 0;
     margin: 0;
+    border-left: none;
+    border-right: none;
   }
   
   .timezone-table-empty {
     padding: var(--spacing-lg);
     font-size: 1rem;
+    margin: var(--spacing-md);
   }
   
-  /* Thinner scrollbar on mobile */
+  /* Thinner, cleaner scrollbar on mobile */
   .timezone-table::-webkit-scrollbar {
-    height: 6px;
+    height: 4px;
+  }
+  
+  .timezone-table::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
