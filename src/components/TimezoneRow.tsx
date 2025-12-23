@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Timezone } from '../types';
 import type { TimeSlot } from '../utils/timezone';
 import './TimezoneRow.css';
@@ -9,7 +8,7 @@ interface TimezoneRowProps {
   onRemove: (id: string) => void;
 }
 
-export const TimezoneRow: React.FC<TimezoneRowProps> = ({ timezone, timeSlots, onRemove }) => {
+export const TimezoneRow = ({ timezone, timeSlots, onRemove }: TimezoneRowProps) => {
   return (
     <div className="timezone-row">
       <div className="timezone-header">

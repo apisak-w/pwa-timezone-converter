@@ -1,6 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { POPULAR_TIMEZONES } from '../types';
+
+export { POPULAR_TIMEZONES };
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -73,4 +76,14 @@ export const generateTimeSlots = (
 export const getTimezoneOffsetHours = (tz: string): number => {
   const offset = dayjs().tz(tz).utcOffset();
   return offset / 60;
+};
+
+export const getAllTimezones = (): { label: string; value: string }[] => {
+  // @ts-ignore
+  const timezones = Intl.supportedValuesOf('timeZone');
+  return timezones.map((tz: string) => {
+    const offset = dayjs().tz(tz).format('Z');
+    const label = `${tz.replace(/_/g, ' ')} (UTC${offset})`;
+    return { label, value: tz };
+  });
 };

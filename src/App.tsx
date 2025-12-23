@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { TimezoneTable } from './components/TimezoneTable';
-import { type Timezone, POPULAR_TIMEZONES } from './types';
-import { getLocalTimezone } from './utils/timezone';
+import { TimezoneSearch } from './components/TimezoneSearch';
+import type { Timezone } from './types';
+import { getLocalTimezone, POPULAR_TIMEZONES } from './utils/timezone';
 import './App.css';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [selectedTimezones, setSelectedTimezones] = useState<Timezone[]>([]);
-  const [availableTimezones] = useState<Timezone[]>(POPULAR_TIMEZONES);
+  const [selectedTimezones, setSelectedTimezones] = useState<Timezone[]>(() => {
+    const localTz = getLocalTimezone();
+    const localTimezone = POPULAR_TIMEZONES.find(tz => tz.value === localTz);
+    
+    if (localTimezone) {
+      return [{ ...localTimezone, id: 'local' }];
+    } else {
+      // Default to New York if local timezone not in popular list
+      return [{ ...POPULAR_TIMEZONES[0], id: 'local' }];
+    }
+  });
 
   // Update time every minute (table shows hours, not seconds)
   useEffect(() => {
@@ -18,22 +28,8 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Initialize with local timezone
-  useEffect(() => {
-    const localTz = getLocalTimezone();
-    const localTimezone = POPULAR_TIMEZONES.find(tz => tz.value === localTz);
-    
-    if (localTimezone) {
-      setSelectedTimezones([localTimezone]);
-    } else {
-      // Default to New York if local timezone not in popular list
-      setSelectedTimezones([POPULAR_TIMEZONES[0]]);
-    }
-  }, []);
-
-  const handleAddTimezone = (timezoneId: string) => {
-    const timezone = availableTimezones.find(tz => tz.id === timezoneId);
-    if (timezone && !selectedTimezones.find(tz => tz.id === timezoneId)) {
+  const handleAddTimezone = (timezone: Timezone) => {
+    if (!selectedTimezones.find(tz => tz.value === timezone.value)) {
       setSelectedTimezones([...selectedTimezones, timezone]);
     }
   };
@@ -41,10 +37,6 @@ function App() {
   const handleRemoveTimezone = (timezoneId: string) => {
     setSelectedTimezones(selectedTimezones.filter(tz => tz.id !== timezoneId));
   };
-
-  const unselectedTimezones = availableTimezones.filter(
-    tz => !selectedTimezones.find(selected => selected.id === tz.id)
-  );
 
   return (
     <div className="app">
@@ -66,31 +58,13 @@ function App() {
             onRemoveTimezone={handleRemoveTimezone}
           />
 
-          {unselectedTimezones.length > 0 && (
-            <div className="add-timezone-section">
-              <label htmlFor="timezone-select" className="add-timezone-label">
-                Add a timezone
-              </label>
-              <select
-                id="timezone-select"
-                className="timezone-select"
-                onChange={(e) => {
-                  if (e.target.value) {
-                    handleAddTimezone(e.target.value);
-                    e.target.value = '';
-                  }
-                }}
-                defaultValue=""
-              >
-                <option value="" disabled>Select a timezone...</option>
-                {unselectedTimezones.map(tz => (
-                  <option key={tz.id} value={tz.id}>
-                    {tz.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+          <div className="add-timezone-section">
+            <h2 className="add-timezone-label">Add a timezone</h2>
+            <TimezoneSearch 
+              onSelect={handleAddTimezone} 
+              excludeValues={selectedTimezones.map(tz => tz.value)} 
+            />
+          </div>
         </div>
       </main>
 

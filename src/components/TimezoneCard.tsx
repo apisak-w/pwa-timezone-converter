@@ -1,4 +1,3 @@
-import React from 'react';
 import { type Timezone } from '../types';
 import { formatTime, formatDate, getTimezoneOffset } from '../utils/timezone';
 import './TimezoneCard.css';
@@ -9,7 +8,7 @@ interface TimezoneCardProps {
   onRemove: (id: string) => void;
 }
 
-export const TimezoneCard: React.FC<TimezoneCardProps> = ({ timezone, currentTime, onRemove }) => {
+export const TimezoneCard = ({ timezone, currentTime, onRemove }: TimezoneCardProps) => {
   const time = formatTime(currentTime, timezone.value);
   const date = formatDate(currentTime, timezone.value);
   const offset = getTimezoneOffset(timezone.value);

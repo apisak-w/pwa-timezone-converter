@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import type { Timezone } from '../types';
 import { TimezoneRow } from './TimezoneRow';
 import { generateTimeSlots } from '../utils/timezone';
@@ -10,11 +10,11 @@ interface TimezoneTableProps {
   onRemoveTimezone: (id: string) => void;
 }
 
-export const TimezoneTable: React.FC<TimezoneTableProps> = ({
+export const TimezoneTable = ({
   timezones,
   currentTime,
   onRemoveTimezone
-}) => {
+}: TimezoneTableProps) => {
   const tableRef = useRef<HTMLDivElement>(null);
   const hasScrolledToCurrentRef = useRef(false);
 
