@@ -1,0 +1,49 @@
+.timezone-table {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.timezone-table-container {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timezone-table-empty {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+/* Custom scrollbar for table */
+.timezone-table::-webkit-scrollbar {
+  height: 10px;
+}
+
+.timezone-table::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.timezone-table::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.timezone-table::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .timezone-table {
+    border-radius: var(--radius-md);
+  }
+}

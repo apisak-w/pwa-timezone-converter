@@ -1,0 +1,141 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+  padding: var(--spacing-xl) var(--spacing-md);
+  box-shadow: var(--shadow-lg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.title-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-subtitle {
+  color: var(--color-text-secondary);
+  margin: var(--spacing-sm) 0 0;
+  font-size: 1rem;
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.add-timezone-section {
+  max-width: 500px;
+  margin: var(--spacing-xl) auto 0;
+  padding: var(--spacing-xl);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.add-timezone-label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.125rem;
+}
+
+.timezone-select {
+  cursor: pointer;
+}
+
+.timezone-select option {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+}
+
+.app-footer {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1.75rem;
+  }
+  
+  .title-icon {
+    font-size: 1.5rem;
+  }
+  
+  .timezone-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-header {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .app-main {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+  
+  .app-subtitle {
+    font-size: 0.875rem;
+  }
+}

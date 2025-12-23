@@ -1,0 +1,137 @@
+.timezone-row {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  min-height: 80px;
+  transition: background-color 0.2s ease;
+}
+
+.timezone-row:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.timezone-header {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background: var(--color-bg-card);
+  border-right: 2px solid var(--color-border);
+  padding: var(--spacing-md);
+  min-width: 200px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.timezone-row:hover .timezone-header {
+  background: var(--color-bg-card-hover);
+}
+
+.timezone-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.timezone-name {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.timezone-remove-btn {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+.timezone-remove-btn:hover {
+  background: var(--color-accent-danger);
+  color: white;
+  transform: none;
+}
+
+.timezone-slots {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.time-slot {
+  min-width: 80px;
+  max-width: 80px;
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.time-slot.current-hour {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+  border-left: 2px solid var(--color-accent-primary);
+  border-right: 2px solid var(--color-accent-primary);
+}
+
+.time-slot:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.date-label {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.time-value {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  margin-top: 12px;
+}
+
+.time-slot.current-hour .time-value {
+  color: var(--color-accent-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .timezone-header {
+    min-width: 150px;
+    max-width: 150px;
+  }
+  
+  .time-slot {
+    min-width: 70px;
+    max-width: 70px;
+  }
+  
+  .timezone-name {
+    font-size: 0.85rem;
+  }
+}

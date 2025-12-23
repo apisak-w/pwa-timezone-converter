@@ -1,0 +1,111 @@
+.timezone-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.timezone-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.timezone-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  background: var(--color-bg-card-hover);
+}
+
+.timezone-card:hover::before {
+  opacity: 1;
+}
+
+.timezone-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.timezone-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+.remove-btn:hover {
+  background: var(--color-accent-danger);
+  color: white;
+  transform: none;
+}
+
+.timezone-time {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.timezone-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.timezone-date {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.timezone-offset {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 640px) {
+  .timezone-time {
+    font-size: 2rem;
+  }
+  
+  .timezone-label {
+    font-size: 1rem;
+  }
+}
