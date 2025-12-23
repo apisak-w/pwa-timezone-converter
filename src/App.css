@@ -117,16 +117,25 @@
     font-size: 1.5rem;
   }
   
-  .timezone-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .app-header {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-sm);
   }
   
   .app-main {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-md) 0;
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  .add-timezone-section {
+    margin: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+  
+  .add-timezone-label {
+    font-size: 1rem;
   }
 }
 

@@ -45,5 +45,16 @@
 @media (max-width: 768px) {
   .timezone-table {
     border-radius: var(--radius-md);
+    margin: 0;
+  }
+  
+  .timezone-table-empty {
+    padding: var(--spacing-lg);
+    font-size: 1rem;
+  }
+  
+  /* Thinner scrollbar on mobile */
+  .timezone-table::-webkit-scrollbar {
+    height: 6px;
   }
 }
