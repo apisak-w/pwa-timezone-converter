@@ -79,7 +79,7 @@ export const getTimezoneOffsetHours = (tz: string): number => {
 };
 
 export const getAllTimezones = (): { label: string; value: string }[] => {
-  // @ts-ignore
+  // @ts-expect-error - supportedValuesOf is a newer Intl feature
   const timezones = Intl.supportedValuesOf('timeZone');
   return timezones.map((tz: string) => {
     const offset = dayjs().tz(tz).format('Z');

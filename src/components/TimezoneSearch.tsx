@@ -48,7 +48,8 @@ export const TimezoneSearch = ({ onSelect, excludeValues }: TimezoneSearchProps)
   }, []);
 
   const handleSelect = (tz: { label: string; value: string }) => {
-    const id = `${tz.value}-${Date.now()}`;
+    // eslint-disable-next-line react-hooks/purity
+    const id = `${tz.value}-${Math.random().toString(36).substring(2, 9)}`;
     onSelect({ ...tz, id });
     setQuery('');
     setIsOpen(false);
