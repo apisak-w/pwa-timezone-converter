@@ -31,8 +31,9 @@ export const getLocalTimezone = (): string => {
   return dayjs.tz.guess();
 };
 
-export const formatTimeSlot = (date: Dayjs, use24Hour: boolean = true): string => {
-  return use24Hour ? date.format('HH:mm') : date.format('h:mm A');
+export const formatTimeSlot = (date: Dayjs): string => {
+  // Always show HH:mm format (e.g., "21:00", "14:30")
+  return date.format('HH:mm');
 };
 
 export const formatDayLabel = (date: Dayjs): string => {
@@ -49,8 +50,11 @@ export const generateTimeSlots = (
   const now = dayjs().tz(timezone);
   const currentHour = now.hour();
   
+  // Start from the beginning of the current hour
+  const baseHour = dayjs(baseTime).tz(timezone).startOf('hour');
+  
   for (let i = 0; i < hoursToShow; i++) {
-    const slotTime = dayjs(baseTime).tz(timezone).add(startOffset + i, 'hour');
+    const slotTime = baseHour.add(startOffset + i, 'hour');
     const hour = slotTime.hour();
     
     slots.push({
